@@ -5,6 +5,12 @@ botonLogin.onclick = (event)=>{
     event.preventDefault()
     login()
 }
+//boton de github
+let botonLoginGH = document.getElementById("botonGitHub")
+botonLoginGH.onclick = (event)=>{
+    event.preventDefault()
+    location.href='/api/session/github'
+}
 
 //oculto el navBar cuando estoy en login
 let navBar=document.getElementById("navBar")
