@@ -62,13 +62,19 @@ async function register(){
         },
         body: JSON.stringify(data)
     })
-
-    let registerUser = await consulta.json()
-    console.log(registerUser)
-    let alerta=document.getElementById('alerta')
-    alerta.innerHTML= await registerUser.message
+    try{
+        let registerUser = await consulta.json()
+        let alerta=document.getElementById('alerta')
+        alerta.innerHTML= 'usuario registrado'
+        console.log(alerta);
+        return registerUser
+    }catch(err){
+        let alerta=document.getElementById('alerta')
+        alerta.innerHTML= err + `fallo el registro, usuario ya registrado \n o no ingreso todos los datos`
+    }
     
-   return registerUser
+    
+   
 }
 
 //logout

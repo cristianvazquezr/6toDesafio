@@ -13,7 +13,7 @@ function authAdmin(req, res, next) {
 //creo el middleware para autenticar logueo
 function auth(req, res, next) {
 
-    if (req.session.users) {
+    if (req.session.user) {
     return next()
     }
     return res.status(401).send('error de autorización!')
@@ -25,7 +25,7 @@ function auth(req, res, next) {
 //creo el middleware para autenticar logueo
 function authLogin(req, res, next) {
 
-    if (req.session.users) {
+    if (req.session.user) {
         res.redirect("/products")
         return res.status(401).send('error de autorización!')
     }
@@ -42,7 +42,8 @@ const viewsRouter=Router()
 
 viewsRouter.get('/',auth, async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.user.first_name
+    
 
     let productos=await PM.getProducts(req.query)
 
@@ -57,7 +58,8 @@ viewsRouter.get('/',auth, async (req,resp)=>{
 
 viewsRouter.get('/products',auth, async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.user.first_name
+    console.log("holasssssss " + userLogged)
     
     let productos=await PM.getProducts(req.query)
 
@@ -72,7 +74,7 @@ viewsRouter.get('/products',auth, async (req,resp)=>{
 
 viewsRouter.get('/realtimeproducts',authAdmin,async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.session.user.first_name
 
     resp.render("realTimeProducts",{
         user:userLogged,
@@ -82,7 +84,7 @@ viewsRouter.get('/realtimeproducts',authAdmin,async (req,resp)=>{
 
 viewsRouter.get('/chat', auth ,async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.session.user.first_name
 
     resp.render("chat",{
         user:userLogged,
@@ -93,7 +95,7 @@ viewsRouter.get('/chat', auth ,async (req,resp)=>{
 
 viewsRouter.get('/cart/:cid', auth,async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.session.user.first_name
 
     let cid=req.params.cid
     let respuesta=await CM.getCartById(cid)
@@ -116,7 +118,7 @@ viewsRouter.get('/register',authLogin,async (req,resp)=>{
 })
 viewsRouter.get('/profile', async (req,resp)=>{
 
-    let userLogged=req.session.users.first_name
+    let userLogged=req.session.user.first_name
 
     resp.render("profile",{
         user:userLogged,

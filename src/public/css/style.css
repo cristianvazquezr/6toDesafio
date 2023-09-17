@@ -82,6 +82,7 @@
 
 .contenedorPrincipal{
     background-color: #c1c1c11a;
+    margin-bottom: 80px;
 }
 
 .itemsNavBar{
@@ -118,6 +119,32 @@
 }
 
 .login{
-    width: 60vw;
+    width: 40vw;
     margin: none;
+    background-color: #6d6d6d36;
+    border-radius: 10%;
+}
+.contendorLogin{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 80px;
+}
+.formularioLogin{
+    margin: 3vw;
+}
+.gitHubLogin{
+    width: 120px;
+}
+.btnGit{
+    background-color:rgb(255, 255, 255);
+    border-color: black;
+    color: black;
+}
+.btnLogin{
+    height: 50px;
+    width: 120px;
+}
+
+.ocultarElemento{
+    visibility: hidden;
 }

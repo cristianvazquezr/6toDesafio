@@ -16,7 +16,7 @@ import cookieParser from 'cookie-parser'
 import sessionRouter from './Routes/session.router.js'
 import session from 'express-session'
 import MongoStore from 'connect-mongo';
-import passport, { Passport } from 'passport';
+import passport from 'passport';
 import initiliazePassport from './config/passport.config.js'
 
 //Creo el servidor

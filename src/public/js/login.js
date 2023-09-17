@@ -1,24 +1,29 @@
+
+//boton de login
 let botonLogin = document.getElementById("botonLogin")
 botonLogin.onclick = (event)=>{
     event.preventDefault()
     login()
 }
 
+//oculto el navBar cuando estoy en login
+let navBar=document.getElementById("navBar")
+console.log(navBar);
+console.log(navBar.className);
+navBar.className=navBar.className + " ocultarElemento"
 
 async function login(){
-
     let user=document.getElementById('email').value
     let password=document.getElementById('password').value
 
-    let consulta = await fetch(`http://localhost:8080/api/session/login?user=${user}&pass=${password}`,{
+    let consulta = await fetch(`http://localhost:8080/api/session/login?email=${user}&password=${password}`,{
         method:'get',
         headers: {
             "Content-Type": "application/json",
-        }
+        },
     })
 
     let loginUser = await consulta.json()
-    console.log(loginUser)
     if(await loginUser.status=='ERROR'){
         let alerta=document.getElementById('alerta')
         alerta.innerHTML= await loginUser.message

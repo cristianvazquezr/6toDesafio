@@ -10,7 +10,7 @@ async function restore(){
     let user=document.getElementById('email').value
     let password=document.getElementById('password').value
 
-    let consulta = await fetch(`http://localhost:8080/api/session/restore?user=${user}&pass=${password}`,{
+    let consulta = await fetch(`http://localhost:8080/api/session/restore/?user=${user}&pass=${password}`,{
         method:'post',
         headers: {
             "Content-Type": "application/json",
@@ -23,12 +23,12 @@ async function restore(){
         let alerta=document.getElementById('alerta')
         alerta.innerHTML= await RestoreUser.message
     }else{
-        let usuarioRestore=document.getElementById('usuario')
-        usuarioRestore.innerHTML=await RestoreUser.datos.first_name
+        let alerta=document.getElementById('alerta')
+        alerta.innerHTML= await RestoreUser.message
         //window.location.href="/products"
 
     }
     
-   return loginUser
+   return RestoreUser
 }
 
