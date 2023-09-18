@@ -51,7 +51,7 @@ sessionRouter.get('/session/login', passport.authenticate('login'), async(req, r
 })
 
 sessionRouter.get('/session/current',authToken,(req,res)=>{
-    res.send({status:'success', datos:"req.user"})
+    res.send({status:'success', datos:req.user})
 })
 
 //login con passport github
@@ -61,6 +61,7 @@ sessionRouter.get('/session/github', passport.authenticate('github', {scope:'use
 })
 
 sessionRouter.get('/session/githubCallBack', passport.authenticate('github', {failureRedirect:'/session/login'}), async(req, res)=>{
+    console.log(req.user)
     req.session.user={
         fist_name:req.user.first_name,
         last_name:req.user.last_name,
@@ -69,8 +70,8 @@ sessionRouter.get('/session/githubCallBack', passport.authenticate('github', {fa
         admin:req.user.admin
     }
     const access_token=generateToken(req.user)
-    res.send({status:"success", access_token})
     res.redirect('/products')
+    
 })
 
 //registro

@@ -66,7 +66,6 @@ async function register(){
         let registerUser = await consulta.json()
         let alerta=document.getElementById('alerta')
         alerta.innerHTML= 'usuario registrado'
-        console.log(alerta);
         return registerUser
     }catch(err){
         let alerta=document.getElementById('alerta')

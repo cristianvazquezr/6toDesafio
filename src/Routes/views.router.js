@@ -74,7 +74,7 @@ viewsRouter.get('/products',auth, async (req,resp)=>{
 
 viewsRouter.get('/realtimeproducts',authAdmin,async (req,resp)=>{
 
-    let userLogged=req.session.user.first_name
+    let userLogged=req.user.first_name
 
     resp.render("realTimeProducts",{
         user:userLogged,
@@ -84,7 +84,7 @@ viewsRouter.get('/realtimeproducts',authAdmin,async (req,resp)=>{
 
 viewsRouter.get('/chat', auth ,async (req,resp)=>{
 
-    let userLogged=req.session.user.first_name
+    let userLogged=req.user.first_name
 
     resp.render("chat",{
         user:userLogged,
@@ -95,7 +95,7 @@ viewsRouter.get('/chat', auth ,async (req,resp)=>{
 
 viewsRouter.get('/cart/:cid', auth,async (req,resp)=>{
 
-    let userLogged=req.session.user.first_name
+    let userLogged=req.user.first_name
 
     let cid=req.params.cid
     let respuesta=await CM.getCartById(cid)
@@ -118,7 +118,7 @@ viewsRouter.get('/register',authLogin,async (req,resp)=>{
 })
 viewsRouter.get('/profile', async (req,resp)=>{
 
-    let userLogged=req.session.user.first_name
+    let userLogged=req.user.first_name
 
     resp.render("profile",{
         user:userLogged,

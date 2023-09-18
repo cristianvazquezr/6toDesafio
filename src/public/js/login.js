@@ -1,4 +1,3 @@
-
 //boton de login
 let botonLogin = document.getElementById("botonLogin")
 botonLogin.onclick = (event)=>{
@@ -42,4 +41,5 @@ async function login(){
     
    return loginUser
 }
+
 

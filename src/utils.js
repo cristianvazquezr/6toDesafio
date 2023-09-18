@@ -15,8 +15,7 @@ export const generateToken=(user)=>{
 export const authToken=(req,res,next)=>{
     const authHeder=req.headers.authorization;
     if(!authHeder) return res.status(401).send({error:'no autorizado'})
-    const token = authToken
-    console.log('hola hola ' + token)
+    const token = authHeder
     jwt.verify(token,private_key,(error,credentials)=>{
         if(error) return res.status(403).send({error: 'no autorizado'});
         req.user= credentials.user;
